@@ -351,21 +351,36 @@
 <p>目前存在的平台</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">iOS</div><div class="line">macOS</div><div class="line">tvOS</div><div class="line">watchOS</div></pre></td></tr></table></figure>
 <p>以及向对应的ApplicationExtension</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">iOSApplicationExtension</div><div class="line">macOSApplicationExtension</div><div class="line">tvOSApplicationExtension</div><div class="line">watchOSApplicationExtension</div></pre></td></tr></table></figure>
-<p>这里很奇怪的是为什么会把ApplicationExtension也要作为系统类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">iOSApplicationExtension</div><div class="line">macOSApplicationExtension</div><div class="line">tvOSApplicationExtension</div><div class="line">watchOSApplicationExtension</div></pre></td></tr></table></figure>
+<p>这里很奇怪的是为什么会把<strong>ApplicationExtension</strong>也要作为系统类型</p>
 <h2 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public final class Kingfisher&lt;Base&gt; &#123;</div><div class="line">    public let base:Base</div><div class="line">    public init(_ base:Base) &#123;</div><div class="line">        self.base = base</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="public"><a href="#public" class="headerlink" title="public"></a>public</h3><p>标识该类是公共的<br>与<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">### final </div><div class="line">表示该类不能被继承</div><div class="line"></div><div class="line">### `&lt;`Base`&gt;`</div><div class="line">泛型类</div><div class="line">### init中的 _</div><div class="line">忽略方法的默认外部参数名</div><div class="line"></div><div class="line"></div><div class="line">### 操作符自定义</div><div class="line"></div><div class="line">### 扩展</div><div class="line"></div><div class="line">- 写一个协议 定义一个只读的属性</div></pre></td></tr></table></figure></p>
-<p>   public protocol KingfisherCompatible {<br>            associatedtype CompatibleType<br>         var kf: CompatibleType { get }<br>   }</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 定义原始类,是一个泛型，关于swift中的泛型，我们可以深入研究一下。</div><div class="line">  &gt; 泛型，能够根据自身的需求，编写出适合任意类型，灵活可重用的函数和类型。它能让你避免代码重复，用一种清晰和抽象的方式来表达代码的意图。</div></pre></td></tr></table></figure>
-<p>  public final class Kingfisher<base> {<br>          public let base:Base<br>          public init(_ base:Base){<br>              self.base = base<br>          }<br>  }</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line">- 扩展协议</div><div class="line"></div><div class="line">  ```  </div><div class="line">  </div><div class="line">  public extension KingfisherCompatible &#123;</div><div class="line">  		public var kf: Kingfisher&lt;Self&gt; &#123;</div><div class="line">  			get &#123; return Kingfisher(self) &#125;</div><div class="line">  		&#125;</div></pre></td></tr></table></figure>
+<h3 id="public"><a href="#public" class="headerlink" title="public"></a>public</h3><p>标识该类是公共的<br>与<strong>public</strong>相对应的是</p>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>表示该类不能被继承</p>
+<h3 id="lt-Base-gt"><a href="#lt-Base-gt" class="headerlink" title="&lt;Base&gt;"></a><code>&lt;</code>Base<code>&gt;</code></h3><p>泛型类</p>
+<h3 id="init中的"><a href="#init中的" class="headerlink" title="init中的 _"></a>init中的 _</h3><p>忽略方法的默认外部参数名</p>
+<h3 id="操作符自定义"><a href="#操作符自定义" class="headerlink" title="操作符自定义"></a>操作符自定义</h3><h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><ul>
+<li><p>写一个协议 定义一个只读的属性</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public protocol KingfisherCompatible &#123;</div><div class="line">		 associatedtype CompatibleType</div><div class="line">var kf: CompatibleType &#123; get &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义原始类,是一个泛型，关于swift中的泛型，我们可以深入研究一下。</p>
+<blockquote>
+<p>泛型，能够根据自身的需求，编写出适合任意类型，灵活可重用的函数和类型。它能让你避免代码重复，用一种清晰和抽象的方式来表达代码的意图。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public final class Kingfisher&lt;Base&gt; &#123;</div><div class="line">		public let base:Base</div><div class="line">		public init(_ base:Base)&#123;</div><div class="line">			self.base = base</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>扩展协议</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public extension KingfisherCompatible &#123;</div><div class="line">		public var kf: Kingfisher&lt;Self&gt; &#123;</div><div class="line">			get &#123; return Kingfisher(self) &#125;</div><div class="line">		&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <ul>
 <li><p>扩展UIImageView</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">extension ImageView: KingfisherCompatible &#123;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">extension ImageView: KingfisherCompatible &#123;&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>在回到我们最开始的示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let url = URL(string: &quot;url_of_your_image&quot;)</div><div class="line">imageView.kf.setImage(with: url)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let url = URL(string: &quot;url_of_your_image&quot;)</div><div class="line">imageView.kf.setImage(with: url)</div></pre></td></tr></table></figure>
 
           
         
