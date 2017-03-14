@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="sakuragi">
 <meta property="og:description" content="swift入坑之Kingfisher源码解析12let url = URL(string: &amp;quot;url_of_your_image&amp;quot;)imageView.kf.setImage(with: url)
 上面代码是官网对kf的使用的。可以看见非常简洁。可以看出应该是扩展了UIImageView，提供了Kingfisher的接口，在OC中我们经常为某些系统的UI控件写一个扩展（Cate">
-<meta property="og:updated_time" content="2017-03-14T08:32:48.000Z">
+<meta property="og:updated_time" content="2017-03-14T08:38:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift入坑之Kingfisher源码解析">
 <meta name="twitter:description" content="swift入坑之Kingfisher源码解析12let url = URL(string: &amp;quot;url_of_your_image&amp;quot;)imageView.kf.setImage(with: url)
@@ -340,13 +340,11 @@
 <h2 id="预编译头文件"><a href="#预编译头文件" class="headerlink" title="预编译头文件"></a>预编译头文件</h2><p>分析一下这段代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#if os(macOS)</div><div class="line">    import AppKit</div><div class="line">    public typealias Image = NSImage</div><div class="line">    public typealias Color = NSColor</div><div class="line">    public typealias ImageView = NSImageView</div><div class="line">    public typealias Button = NSButton</div><div class="line">#else</div><div class="line">    import UIKit</div><div class="line">    public typealias Image = UIImage</div><div class="line">    public typealias Color = UIColor</div><div class="line">    </div><div class="line">    #if !os(watchOS)</div><div class="line">    public typealias ImageView = UIImage</div><div class="line">    public typealias Button = UIButton</div><div class="line">    #endif</div><div class="line">#endif</div></pre></td></tr></table></figure>
 <p>swift的预编译语法和OC一样，这段代码把不同类型中相同的控件通过关键字typealias重命名，这种做法比较常见，跨平台的方案中经常用这种方式来兼容。</p>
-<p>关键字<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>#if</p>
-<p>#else</p>
-<p>#endif</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">有两个宏定义可以关注一下</div><div class="line">**os(macOS)** 和 **os(watchOS)**</div></pre></td></tr></table></figure>
-<p>#available<br>@available</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">这里有相关的解释</div><div class="line">&lt;http://m.blog.csdn.net/article/details?id=51150952&gt;</div><div class="line">关于他们的区别，``` #availabel ```是在运行的时候返回一个bool值，而 ``` @available ```是在编译的时候区分</div><div class="line"></div><div class="line">目前存在的平台</div></pre></td></tr></table></figure>
+<p>关键字 <strong>typealias</strong>，给系统的类型取别名，相当于OC中的 <strong>typedef</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#if</div><div class="line">#else</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<p>有两个宏定义可以关注一下<br><strong>os(macOS)</strong> 和 <strong>os(watchOS)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#available</div><div class="line">@available</div></pre></td></tr></table></figure>
+<p>这里有相关的解释<br><a href="http://m.blog.csdn.net/article/details?id=51150952" target="_blank" rel="external">http://m.blog.csdn.net/article/details?id=51150952</a><br>关于他们的区别，<figure class="highlight plain"><figcaption><span>```是在运行的时候返回一个bool值，而 ``` @available ```是在编译的时候区分</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">目前存在的平台</div></pre></td></tr></table></figure></p>
 <p>iOS<br>macOS<br>tvOS<br>watchOS</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">以及向对应的ApplicationExtension</div></pre></td></tr></table></figure>
 <p>iOSApplicationExtension<br>macOSApplicationExtension<br>tvOSApplicationExtension<br>watchOSApplicationExtension</p>
