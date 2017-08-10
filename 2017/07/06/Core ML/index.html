@@ -1,0 +1,744 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Core MLCore ML的API很简单，你所要做的就是：
+
+加载一个训练过的模型
+生成预测
+发布
+
+在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。
+
+模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core ML">
+<meta property="og:url" content="http://yoursite.com/2017/07/06/Core ML/index.html">
+<meta property="og:site_name" content="sakuragi">
+<meta property="og:description" content="Core MLCore ML的API很简单，你所要做的就是：
+
+加载一个训练过的模型
+生成预测
+发布
+
+在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。
+
+模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含">
+<meta property="og:updated_time" content="2017-07-07T06:09:33.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Core ML">
+<meta name="twitter:description" content="Core MLCore ML的API很简单，你所要做的就是：
+
+加载一个训练过的模型
+生成预测
+发布
+
+在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。
+
+模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/06/Core ML/"/>
+
+
+
+
+
+  <title> Core ML | sakuragi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">sakuragi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">iOS/swift</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/Core ML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sakuragi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sakuragi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Core ML
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-06T10:19:36+08:00">
+                2017-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/06/Core ML/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/06/Core ML/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Core-ML"><a href="#Core-ML" class="headerlink" title="Core ML"></a>Core ML</h1><p>Core ML的API很简单，你所要做的就是：</p>
+<ol>
+<li>加载一个训练过的模型</li>
+<li>生成预测</li>
+<li>发布</li>
+</ol>
+<p>在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。</p>
+<blockquote>
+<p>模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含在这个文件里。</p>
+</blockquote>
+<p>我们之需要把mlmodel文件放在我们项目里，Xcdoe会自动为它生成一个Swift或Objective-C包装类。</p>
+<p>例如，我们在项目中添加了RestNet50.mlmodel文件，你可以使用</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> model = <span class="type">RestNet50</span>()</div></pre></td></tr></table></figure>
+<p>来初始化这个模型，然后使用下面的代码进行预测：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> pixelBuffer: <span class="type">CVPixelBuffer</span> = <span class="comment">/*你的图像*/</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> prediction = <span class="keyword">try</span> ? model.prediction(image:pixelBuffer) &#123;</div><div class="line">  <span class="built_in">print</span>(prediction.classLabel)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样就可以了，你不需要写代码加载模型，或者对它的输出结果进行转换，以便在<code>Swift</code>中使用，  ————Core ML 和 Xcode为你做了这些事情。</p>
+<p>Core ML 会自己决定是该用<code>CPU</code>还是<code>GPU</code>来允许模型，这样可以更好的使用资源。甚至，Core ML 还可以将模型拆分开，部分运行在<code>GPU</code>(需要更多计算的任务)上，部分运行在CPU(消耗更多内存的任务)上。<br><br>Core ML 能够使用CPU对于开发者来说是一件好事，因为这样它们就可以在iOS模拟器上运行（而Metal是不允许这样做的，所以也就无法进行单元测试）</p>
+<h1 id="Core-ML支持哪些模型"><a href="#Core-ML支持哪些模型" class="headerlink" title="Core ML支持哪些模型"></a>Core ML支持哪些模型</h1><ul>
+<li>支持向量机(SVM)</li>
+<li>tree ensemble (like: random forest/ boosted tree)</li>
+<li>线性回归和逻辑回归</li>
+<li>神经网络： 前馈、卷积、循环</li>
+</ul>
+<p>苹果提供了一系列经过训练的模型进行下载：</p>
+<ul>
+<li>Inception v3</li>
+<li>RestNet50 </li>
+<li>VGG16</li>
+</ul>
+<p>同时，我们也可以使用Core MLPython工具包将你自己的模型转换成可用的模型。</p>
+<ul>
+<li>Keras</li>
+<li>Caffe</li>
+<li>scikit-learn</li>
+<li>XGBoost </li>
+<li>libSVM</li>
+</ul>
+<h1 id="Core-ML-的局限"><a href="#Core-ML-的局限" class="headerlink" title="Core ML 的局限"></a>Core ML 的局限</h1><ul>
+<li>它只支持有监管的机器学习模型，不支持无监管的学习算法或者增强型学习。</li>
+<li>不能在设备上进行训练，你需要使用离线工具进行训练，然后把训练过的模型转换成Core ML格式。</li>
+<li>如果Core ML不支持某种层次类型，那么你就不能使用它。目前为止，使用自己的计算内核是无法对Core ML进行扩展的。TensorFlow可以用于构建一般性的计算图，而mlmodel文件并不像它那么灵活。</li>
+<li>Core ML转换工具只支持一部分指定版本的训练工具。如果你在TensorFlow里训练模型，就无法使用这个工具，必须自己编写转换脚本。</li>
+<li>你无法查看神经网络中间层生成的结果，只能获得最后层的预测。</li>
+<li>下载模型更新可能会有问题</li>
+<li>Core ML 把选择在CPU或者GPU上运行的细节隐藏起来了，你要相信它能做出正确的选择，你无法强制要求它在哪运行。</li>
+</ul>
+<p></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/15/冷启动时间/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/07/06/Core ML/"
+           data-title="Core ML" data-url="http://yoursite.com/2017/07/06/Core ML/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg"
+               alt="sakuragi" />
+          <p class="site-author-name" itemprop="name">sakuragi</p>
+           
+              <p class="site-description motion-element" itemprop="description">iOS/swift</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2213728661" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-ML"><span class="nav-number">1.</span> <span class="nav-text">Core ML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-ML支持哪些模型"><span class="nav-number">2.</span> <span class="nav-text">Core ML支持哪些模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-ML-的局限"><span class="nav-number">3.</span> <span class="nav-text">Core ML 的局限</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sakuragi</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sakuragi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
