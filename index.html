@@ -472,7 +472,7 @@
           
             <h2 id="源码分析-项目架构"><a href="#源码分析-项目架构" class="headerlink" title="源码分析-项目架构"></a>源码分析-项目架构</h2><p>好了顺利跑起来工程后，我开始分析它的源码，Swift项目比 Objective-C项目<a href="https://github.com/peter-iakovlev/Telegram" target="_blank" rel="noopener">GitHub - peter-iakovlev/Telegram: Telegram Messenger for iOS</a>)要清晰得多，作者都是peter-iakovlev。我们从提交记录就可以大致看出，我们也能从两个项目中感受到作者通过这个项目的进步。</p>
 <p>这里我以一张图来简单介绍下项目的架构：</p>
-<p><img src="/2019/07/29/Telegram-iOS-Swift源码解析之项目架构/3.png" alt="项目架构"><br>这里颜色上做个说明，绿色是swift语言，棕黄色是OC语言实现，白色是C和C++实现。可以大致有个印象。这里有组件化的思想，大致看了下UI的实现，很多地方都是用facebook的UI框架AsyncDisplayKit来提高界面的流畅性，对于异步事件，用SSigalKit来处理信号。</p>
+<p><img src="/2019/07/29/Telegram-iOS-Swift源码解析之项目架构/3.png" alt=""><br>这里颜色上做个说明，绿色是swift语言，棕黄色是OC语言实现，白色是C和C++实现。可以大致有个印象。这里有组件化的思想，大致看了下UI的实现，很多地方都是用facebook的UI框架AsyncDisplayKit来提高界面的流畅性，对于异步事件，用SSigalKit来处理信号。</p>
 <h3 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h3><p>在业务层，把UI和逻辑处理抽离开来形成了TelegramUI 和 Telegram-iOS这两个组件。</p>
 <h3 id="协议层"><a href="#协议层" class="headerlink" title="协议层"></a>协议层</h3><p>在协议层，用了自家非常安全的MTProtoKit协议，已经对TL语言的swift实现TelegramApi，能够自己定义一套数据的表达语言，在多端同步使用，足以见起逼格。关于MTProto协议，我后面会专门花一篇文章来分析介绍。目前一定有一个大致的了解。</p>
 <h3 id="基础组件层"><a href="#基础组件层" class="headerlink" title="基础组件层"></a>基础组件层</h3><p>在基础组件层，作者也是展示了自己的架构能力，把每一个功能模块独立出来，特别需要强调的是TelegramCore这个库，从命名就能感受到他的重要性，作为核心支撑库，后面我们也会来进行详细分析。在基础组件库中，有一个有意思的LegacyComponents库。里面的应该是OC项目遗留下来的，未来得及重构的组件，这里也可以看到一个软件开发的过程。任何一个牛逼的开源软件都是这样不断的重构和迭代来的。</p>
