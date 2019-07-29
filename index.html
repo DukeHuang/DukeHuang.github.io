@@ -251,6 +251,138 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/29/Telegram-iOS-Swift-编译问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sakuragi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sakuragi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/07/29/Telegram-iOS-Swift-编译问题/" itemprop="url">
+                  Telegram-iOS Swift 编译问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-29T23:56:44+08:00">
+                2019-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/29/Telegram-iOS-Swift-编译问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/07/29/Telegram-iOS-Swift-编译问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前面一篇文章<a href="https://www.jianshu.com/p/1d75b09b4a37" target="_blank" rel="noopener">Telegram-iOS github 拉取失败解决过程</a>我们介绍了如何从github上面拉取Telegram-iOS的源码，在文章的结尾我说会介绍下如何能将项目跑起来，这里兑现我的承诺。<br>刚开始我也是按照官方的文档，拉取代码，注意一定要拉取子模块，即使用<br><code>git clone —recursive</code><br>命令，这样才能保证项目的完整性，在第五步中，让我们<br><code>Open the Telegram-iOS-Fork scheme.</code><br>我也按照这个步骤选中了这个scheme.<br>关于什么是scheme,我想搞iOS开发一定知道这个，可以理解成一个编译计划，编译哪个target,怎么编译，环境变量是哪些。scheme可以选择属于project还是workspace。一个scheme对应一个target,一个target可以对应多个scheme。具体可以看<a href="https://developer.apple.com/library/archive/featuredarticles/XcodeConcepts/Concept-Schemes.html#//apple_ref/doc/uid/TP40009328-CH8-SW1" target="_blank" rel="noopener">苹果官方文档</a><br>废话不多说，当我按照这个步骤拉取代码后，并选中 Telegram-iOS-Fork这个scheme后，设备选中模拟器编译，还是报错了，保持信息如下<br><code>No such module ‘SwiftSignalKit’ in TelegramAudio Framework</code><br>但是我看了，在 Linked Frameworks and Libraries中已经定义过了。<br><img src="/2019/07/29/Telegram-iOS-Swift-编译问题/1.png" alt=""></p>
+<p>在github Issues中我找到了同样的问题<br><a href="https://github.com/TelegramMessenger/Telegram-iOS/issues/82" target="_blank" rel="noopener">Unable to compile · Issue #82 · TelegramMessenger/Telegram-iOS · GitHub</a><br>看回答也是说选这个scheme,但是我这边还是报错了，回答中有一说是重复的问题<br><a href="https://github.com/TelegramMessenger/Telegram-iOS/issues/76" target="_blank" rel="noopener">release-5.8 WatchCommonWatch/WatchCommonWatch.h not found · Issue #76 · TelegramMessenger/Telegram-iOS · GitHub</a></p>
+<p><img src="/2019/07/29/Telegram-iOS-Swift-编译问题/2.png" alt=""></p>
+<p>这里有个回答说用AppStoreLLC scheme 可以编译成功，我就试了下，果然通过了。<br>比我想象中要顺利得多,至于具体什么原因我还没去深究，应该是工程配置的问题。后面再去查下，有知道的同学欢迎留言。</p>
+<p>遇到问题，我们多去看官方的一些Issue,你遇到的可能别人早已经遇到并解决过了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/29/Telegram-iOS-Swift源码解析之项目架构/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -522,145 +654,6 @@
 <li>Core ML 把选择在CPU或者GPU上运行的细节隐藏起来了，你要相信它能做出正确的选择，你无法强制要求它在哪运行。</li>
 </ul>
 <p></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/15/冷启动时间/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sakuragi">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuragi">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/15/冷启动时间/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T14:15:41+08:00">
-                2017-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/15/冷启动时间/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/15/冷启动时间/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Theory </p>
-<ul>
-<li>Everything that happens before main()</li>
-<li>Mach-O format</li>
-<li>Virtual Memory basics</li>
-<li>How Mach-O binaries are loaded and prepared</li>
-</ul>
-<p>Practical</p>
-<ul>
-<li>How to measure</li>
-<li>Optimizing start up time</li>
-</ul>
 
           
         
