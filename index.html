@@ -161,11 +161,77 @@
         
         
           
+          <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
       
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+      
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>Schedule</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+      
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+      
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>Commonweal 404</a>
 
   </li>
     </ul>
@@ -197,7 +263,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakuragi">
       <meta itemprop="description" content="iOS/swift">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -320,7 +386,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakuragi">
       <meta itemprop="description" content="iOS/swift">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -404,7 +470,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakuragi">
       <meta itemprop="description" content="iOS/swift">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -541,114 +607,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/13/大数据上报/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sakuragi">
-      <meta itemprop="description" content="iOS/swift">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="sakuragi">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/03/13/大数据上报/" class="post-title-link" itemprop="url">大数据上报</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-03-13 15:23:17" itemprop="dateCreated datePublished" datetime="2017-03-13T15:23:17+08:00">2017-03-13</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2017-03-15 18:20:31" itemprop="dateModified" datetime="2017-03-15T18:20:31+08:00">2017-03-15</time>
-              </span>
-            
-          
-
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>看别人的源代码就像一次远行</p>
-<p>今天我们要分析的代码是货主端的大数据上报系统</p>
-<p>首先我们看一下这个组件的目录结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">├── Business</span><br><span class="line">│   ├── URAdvertEventBusiness.h</span><br><span class="line">│   ├── URAdvertEventBusiness.m</span><br><span class="line">│   ├── URAppUseBusiness.h</span><br><span class="line">│   ├── URAppUseBusiness.m</span><br><span class="line">│   ├── URBaseBusiness.h</span><br><span class="line">│   ├── URBaseBusiness.m</span><br><span class="line">│   ├── URCustomizeEventBusiness.h</span><br><span class="line">│   ├── URCustomizeEventBusiness.m</span><br><span class="line">│   ├── URGoodsEventBusiness.h</span><br><span class="line">│   ├── URGoodsEventBusiness.m</span><br><span class="line">│   ├── URLaunchBusiness.h</span><br><span class="line">│   ├── URLaunchBusiness.m</span><br><span class="line">│   ├── URPagePVActionBusiness.h</span><br><span class="line">│   ├── URPagePVActionBusiness.m</span><br><span class="line">│   ├── URPushActionBusiness.h</span><br><span class="line">│   ├── URPushActionBusiness.m</span><br><span class="line">│   ├── URQosBusiness.h</span><br><span class="line">│   ├── URQosBusiness.m</span><br><span class="line">│   ├── URRequestBusiness.h</span><br><span class="line">│   ├── URRequestBusiness.m</span><br><span class="line">│   ├── URWebActionBusiness.h</span><br><span class="line">│   └── URWebActionBusiness.m</span><br><span class="line">├── Category</span><br><span class="line">│   ├── NSData+URExtends.h</span><br><span class="line">│   ├── NSData+URExtends.m</span><br><span class="line">│   ├── NSDate+URExtends.h</span><br><span class="line">│   └── NSDate+URExtends.m</span><br><span class="line">├── Const</span><br><span class="line">│   ├── URApis.h</span><br><span class="line">│   ├── URApis.m</span><br><span class="line">│   ├── URConst.h</span><br><span class="line">│   └── UREventConst.h</span><br><span class="line">├── DataBase</span><br><span class="line">│   ├── URDBInteract.h</span><br><span class="line">│   ├── URDBInteract.m</span><br><span class="line">│   ├── URDBManager.h</span><br><span class="line">│   └── URDBManager.m</span><br><span class="line">├── Model</span><br><span class="line">│   ├── URAdvertEventModel.h</span><br><span class="line">│   ├── URAdvertEventModel.m</span><br><span class="line">│   ├── URAppUseModel.h</span><br><span class="line">│   ├── URAppUseModel.m</span><br><span class="line">│   ├── URBaseModel.h</span><br><span class="line">│   ├── URBaseModel.m</span><br><span class="line">│   ├── URCommonModel.h</span><br><span class="line">│   ├── URCommonModel.m</span><br><span class="line">│   ├── URCustomizeEventModel.h</span><br><span class="line">│   ├── URCustomizeEventModel.m</span><br><span class="line">│   ├── URGoodsEventModel.h</span><br><span class="line">│   ├── URGoodsEventModel.m</span><br><span class="line">│   ├── URLaunchModel.h</span><br><span class="line">│   ├── URLaunchModel.m</span><br><span class="line">│   ├── URPagePVActionModel.h</span><br><span class="line">│   ├── URPagePVActionModel.m</span><br><span class="line">│   ├── URPushActionModel.h</span><br><span class="line">│   ├── URPushActionModel.m</span><br><span class="line">│   ├── URQosModel.h</span><br><span class="line">│   ├── URQosModel.m</span><br><span class="line">│   ├── URWebModel.h</span><br><span class="line">│   └── URWebModel.m</span><br><span class="line">├── Request</span><br><span class="line">│   ├── URRequest.h</span><br><span class="line">│   └── URRequest.m</span><br><span class="line">├── URConfigListMananger.h</span><br><span class="line">├── URConfigListMananger.m</span><br><span class="line">├── URService.h</span><br><span class="line">├── URService.m</span><br><span class="line">├── URShareDataManager.h</span><br><span class="line">├── URShareDataManager.m</span><br><span class="line">├── URUtils.h</span><br><span class="line">└── URUtils.m</span><br></pre></td></tr></table></figure>
-
-<p>数据的收集，把数据放在哪?数据的上报，上报的时机。</p>
-<p>如果集成了bugly的app,通过instrument的timer去检查，你会发现后台线程占用CPU最高的就是bugly的一些操作。就很怀疑bugly到底做了些什么。</p>
-<p>首先，从bugly的官网，我们可以看见崩溃的统计，卡顿率的统计。</p>
-<p>AOP的方式切片，然后对每个页面进行无埋点的统计，所有的都是黑箱操作，这需要我们去做越狱开发。</p>
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/Kingfisher源码解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakuragi">
       <meta itemprop="description" content="iOS/swift">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -812,6 +776,9 @@
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="http://ww4.sinaimg.cn/small/83f2d195gw1dtpnufytslj.jpg"
+      alt="sakuragi">
   <p class="site-author-name" itemprop="name">sakuragi</p>
   <div class="site-description motion-element" itemprop="description">iOS/swift</div>
 </div>
@@ -820,12 +787,40 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
     
   </nav>
+  <div class="chat motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/dukehuang" title="GitHub &rarr; https://github.com/dukehuang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:huangyongyou1989@qq.com" title="E-Mail &rarr; mailto:huangyongyou1989@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
 
 
 
