@@ -57,18 +57,21 @@
   };
 </script>
 
-  <meta name="description" content="Core MLCore ML的API很简单，你所要做的就是：  加载一个训练过的模型 生成预测 发布  在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。  模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含">
+  <meta name="description" content="源码分析-项目架构好了顺利跑起来工程后，我开始分析它的源码，Swift项目比 Objective-C项目要清晰得多，作者都是peter-iakovlev。我们从提交记录就可以大致看出，我们也能从两个项目中感受到作者通过这个项目的进步。 这里我以一张图来简单介绍下项目的架构：  其中，绿色是swift语言，棕黄色是OC语言实现，白色是C和C++实现。从数量上我们大致有个印象。 UI视图层组件化的思想">
+<meta name="keywords" content="Telegram">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Core ML">
-<meta property="og:url" content="http://yoursite.com/2017/07/06/Core ML/index.html">
+<meta property="og:title" content="Telegram_iOS Swift项目架构">
+<meta property="og:url" content="http://yoursite.com/2019/07/30/Telegram-iOS-structure/index.html">
 <meta property="og:site_name" content="sakuragi">
-<meta property="og:description" content="Core MLCore ML的API很简单，你所要做的就是：  加载一个训练过的模型 生成预测 发布  在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。  模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含">
+<meta property="og:description" content="源码分析-项目架构好了顺利跑起来工程后，我开始分析它的源码，Swift项目比 Objective-C项目要清晰得多，作者都是peter-iakovlev。我们从提交记录就可以大致看出，我们也能从两个项目中感受到作者通过这个项目的进步。 这里我以一张图来简单介绍下项目的架构：  其中，绿色是swift语言，棕黄色是OC语言实现，白色是C和C++实现。从数量上我们大致有个印象。 UI视图层组件化的思想">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-07T06:09:33.000Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/30/Telegram-iOS-structure/3.png">
+<meta property="og:updated_time" content="2019-08-01T16:04:53.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Core ML">
-<meta name="twitter:description" content="Core MLCore ML的API很简单，你所要做的就是：  加载一个训练过的模型 生成预测 发布  在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。  模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含">
-  <link rel="canonical" href="http://yoursite.com/2017/07/06/Core ML/">
+<meta name="twitter:title" content="Telegram_iOS Swift项目架构">
+<meta name="twitter:description" content="源码分析-项目架构好了顺利跑起来工程后，我开始分析它的源码，Swift项目比 Objective-C项目要清晰得多，作者都是peter-iakovlev。我们从提交记录就可以大致看出，我们也能从两个项目中感受到作者通过这个项目的进步。 这里我以一张图来简单介绍下项目的架构：  其中，绿色是swift语言，棕黄色是OC语言实现，白色是C和C++实现。从数量上我们大致有个印象。 UI视图层组件化的思想">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/30/Telegram-iOS-structure/3.png">
+  <link rel="canonical" href="http://yoursite.com/2019/07/30/Telegram-iOS-structure/">
 
 
 <script id="page.configurations">
@@ -77,7 +80,7 @@
   };
 </script>
 
-  <title>Core ML | sakuragi</title>
+  <title>Telegram_iOS Swift项目架构 | sakuragi</title>
   
 
 
@@ -194,7 +197,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/Core ML/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/30/Telegram-iOS-structure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sakuragi">
@@ -208,7 +211,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">Core ML
+          <h1 class="post-title" itemprop="name headline">Telegram_iOS Swift项目架构
 
               
             
@@ -228,7 +231,7 @@
                 
               
 
-              <time title="Created: 2017-07-06 10:19:36" itemprop="dateCreated datePublished" datetime="2017-07-06T10:19:36+08:00">2017-07-06</time>
+              <time title="Created: 2019-07-30 00:11:18" itemprop="dateCreated datePublished" datetime="2019-07-30T00:11:18+08:00">2019-07-30</time>
             </span>
           
             
@@ -241,7 +244,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2017-07-07 14:09:33" itemprop="dateModified" datetime="2017-07-07T14:09:33+08:00">2017-07-07</time>
+                <time title="Modified: 2019-08-02 00:04:53" itemprop="dateModified" datetime="2019-08-02T00:04:53+08:00">2019-08-02</time>
               </span>
             
           
@@ -257,55 +260,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Core-ML"><a href="#Core-ML" class="headerlink" title="Core ML"></a>Core ML</h1><p>Core ML的API很简单，你所要做的就是：</p>
-<ol>
-<li>加载一个训练过的模型</li>
-<li>生成预测</li>
-<li>发布</li>
-</ol>
-<p>在Core ML之前，要加载一个训练过的模型非常麻烦，而现在，加载模型只需要两个步骤。</p>
-<blockquote>
-<p>模型包含在.mlmodel文件里，这是一种新的开放文件格式，它描述了模型的层次，输入和输出、类标签，以及一些必要的预处理步骤。它还包含了所有学习过的预处理参数（权重和偏差）。所有我们需要的东西都包含在这个文件里。</p>
-</blockquote>
-<p>我们之需要把mlmodel文件放在我们项目里，Xcdoe会自动为它生成一个Swift或Objective-C包装类。</p>
-<p>例如，我们在项目中添加了RestNet50.mlmodel文件，你可以使用</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> model = <span class="type">RestNet50</span>()</span><br></pre></td></tr></table></figure>
-
-<p>来初始化这个模型，然后使用下面的代码进行预测：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pixelBuffer: <span class="type">CVPixelBuffer</span> = <span class="comment">/*你的图像*/</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> prediction = <span class="keyword">try</span> ? model.prediction(image:pixelBuffer) &#123;</span><br><span class="line">  <span class="built_in">print</span>(prediction.classLabel)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样就可以了，你不需要写代码加载模型，或者对它的输出结果进行转换，以便在<code>Swift</code>中使用，  ————Core ML 和 Xcode为你做了这些事情。</p>
-<p>Core ML 会自己决定是该用<code>CPU</code>还是<code>GPU</code>来允许模型，这样可以更好的使用资源。甚至，Core ML 还可以将模型拆分开，部分运行在<code>GPU</code>(需要更多计算的任务)上，部分运行在CPU(消耗更多内存的任务)上。<br><br>Core ML 能够使用CPU对于开发者来说是一件好事，因为这样它们就可以在iOS模拟器上运行（而Metal是不允许这样做的，所以也就无法进行单元测试）</p>
-<h1 id="Core-ML支持哪些模型"><a href="#Core-ML支持哪些模型" class="headerlink" title="Core ML支持哪些模型"></a>Core ML支持哪些模型</h1><ul>
-<li>支持向量机(SVM)</li>
-<li>tree ensemble (like: random forest/ boosted tree)</li>
-<li>线性回归和逻辑回归</li>
-<li>神经网络： 前馈、卷积、循环</li>
-</ul>
-<p>苹果提供了一系列经过训练的模型进行下载：</p>
-<ul>
-<li>Inception v3</li>
-<li>RestNet50 </li>
-<li>VGG16</li>
-</ul>
-<p>同时，我们也可以使用Core MLPython工具包将你自己的模型转换成可用的模型。</p>
-<ul>
-<li>Keras</li>
-<li>Caffe</li>
-<li>scikit-learn</li>
-<li>XGBoost </li>
-<li>libSVM</li>
-</ul>
-<h1 id="Core-ML-的局限"><a href="#Core-ML-的局限" class="headerlink" title="Core ML 的局限"></a>Core ML 的局限</h1><ul>
-<li>它只支持有监管的机器学习模型，不支持无监管的学习算法或者增强型学习。</li>
-<li>不能在设备上进行训练，你需要使用离线工具进行训练，然后把训练过的模型转换成Core ML格式。</li>
-<li>如果Core ML不支持某种层次类型，那么你就不能使用它。目前为止，使用自己的计算内核是无法对Core ML进行扩展的。TensorFlow可以用于构建一般性的计算图，而mlmodel文件并不像它那么灵活。</li>
-<li>Core ML转换工具只支持一部分指定版本的训练工具。如果你在TensorFlow里训练模型，就无法使用这个工具，必须自己编写转换脚本。</li>
-<li>你无法查看神经网络中间层生成的结果，只能获得最后层的预测。</li>
-<li>下载模型更新可能会有问题</li>
-<li>Core ML 把选择在CPU或者GPU上运行的细节隐藏起来了，你要相信它能做出正确的选择，你无法强制要求它在哪运行。</li>
-</ul>
-<p></p>
+        <h2 id="源码分析-项目架构"><a href="#源码分析-项目架构" class="headerlink" title="源码分析-项目架构"></a>源码分析-项目架构</h2><p>好了顺利跑起来工程后，我开始分析它的源码，<a href="https://github.com/peter-iakovlev/Telegram" target="_blank" rel="noopener">Swift项目</a>比 Objective-C项目要清晰得多，作者都是peter-iakovlev。我们从提交记录就可以大致看出，我们也能从两个项目中感受到作者通过这个项目的进步。</p>
+<p>这里我以一张图来简单介绍下项目的架构：</p>
+<p><img src="/2019/07/30/Telegram-iOS-structure/3.png" alt=""></p>
+<p>其中，绿色是swift语言，棕黄色是OC语言实现，白色是C和C++实现。从数量上我们大致有个印象。</p>
+<h3 id="UI视图层"><a href="#UI视图层" class="headerlink" title="UI视图层"></a>UI视图层</h3><p>组件化的思想提现得很明显，其中UI大部分放在了TelegramUI这个工程下面，看了下细节的实现，大部分采用facebook工程是的第三方的UI异步绘制框架Texture（以前叫AsyncDisplayKit）来提高界面的流畅性<br>而对于异步事件的处理，采用了ReactiveX响应式编程的思想。但是值得注意的一点是，作者用的也不是主流的Rxswift框架，而是类似于这个框架的SSignalKit。这里不知道是出于什么考虑，为什么不用业界的框架，这样对于我们来说，有一定的上手难度，但是思想都差不多啦。</p>
+<h3 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h3><p>在业务层，把UI和逻辑处理抽离开来形成了TelegramUI 和 Telegram-iOS这两个组件。Telegram-iOS我们可以理解为这个工程的组织者，他负责组织和协调各个组件。</p>
+<h3 id="协议层"><a href="#协议层" class="headerlink" title="协议层"></a>协议层</h3><p>在协议层，用了自家非常安全的MTProtoKit协议，已经对TL语言的swift实现TelegramApi，能够自己定义一套数据的表达语言，在多端同步使用，足以见起逼格。关于MTProto协议，我后面会专门花一篇文章来分析介绍。它是在TCP协议的基础上，自定义了一套安全的传输协议。</p>
+<h3 id="基础组件层"><a href="#基础组件层" class="headerlink" title="基础组件层"></a>基础组件层</h3><p>在基础组件层，作者也是展示了自己的架构能力，把每一个功能模块独立出来，特别需要强调的是TelegramCore这个库，从命名就能感受到他的重要性，作为核心支撑库，后面我们也会来进行详细分析。在基础组件库中，有一个有意思的LegacyComponents库。里面的应该是OC项目遗留下来的，没有来得及重构的组件，这里也可以看到一个软件开发的过程。任何一个厉害的开源项目都是这样持续不断的重构和迭代来的。</p>
+<h3 id="三方组件"><a href="#三方组件" class="headerlink" title="三方组件"></a>三方组件</h3><p>在第三库上，作者用得还算比较克制，没有过多的用第三方库，都是业界非常著名的开源库。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这两天对源码的分析，我收获了很多，也对之前的自己的一些架构有所反思。写文章我们也可以用这样的思想，小步迭代，慢慢完善。</p>
 
     </div>
 
@@ -314,10 +278,16 @@
     
 
     <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Telegram/" rel="tag"># Telegram</a>
+          
+        </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2017/03/09/Kingfisher源码解析/" rel="next" title="swift入坑之Kingfisher源码解析">
-                <i class="fa fa-chevron-left"></i> swift入坑之Kingfisher源码解析
+              <a href="/2019/07/29/Telegram-iOS-Swift-编译问题/" rel="next" title="Telegram-iOS Swift 编译问题">
+                <i class="fa fa-chevron-left"></i> Telegram-iOS Swift 编译问题
               </a>
             
           </div>
@@ -325,8 +295,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2019/07/29/Telegram-iOS-Swift-编译问题/" rel="prev" title="Telegram-iOS Swift 编译问题">
-                Telegram-iOS Swift 编译问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/01/recursion/" rel="prev" title="递归(recursion)">
+                递归(recursion) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -452,7 +422,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-ML"><span class="nav-number">1.</span> <span class="nav-text">Core ML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-ML支持哪些模型"><span class="nav-number">2.</span> <span class="nav-text">Core ML支持哪些模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Core-ML-的局限"><span class="nav-number">3.</span> <span class="nav-text">Core ML 的局限</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#源码分析-项目架构"><span class="nav-number">1.</span> <span class="nav-text">源码分析-项目架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UI视图层"><span class="nav-number">1.1.</span> <span class="nav-text">UI视图层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务层"><span class="nav-number">1.2.</span> <span class="nav-text">业务层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协议层"><span class="nav-number">1.3.</span> <span class="nav-text">协议层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础组件层"><span class="nav-number">1.4.</span> <span class="nav-text">基础组件层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三方组件"><span class="nav-number">1.5.</span> <span class="nav-text">三方组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
